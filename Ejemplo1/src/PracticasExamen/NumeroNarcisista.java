@@ -1,6 +1,8 @@
 package PracticasExamen;
 
 import java.util.Scanner;
+//es un número entero que es igual a la suma de sus dígitos elevados a la potencia del número de dígitos del número.
+//Por ejemplo, 153 es un número narcisista porque 1³ + 5³ + 3³ = 1 + 125 + 27 = 153. 
 
 public class NumeroNarcisista {
 
