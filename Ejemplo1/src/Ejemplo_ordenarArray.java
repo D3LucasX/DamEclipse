@@ -59,7 +59,7 @@ public class Ejemplo_ordenarArray {
 				contadorMenor ++;
 			}
 		}
-		System.out.println("El numero mayor es : " + menor);
+		System.out.println("El numero menor es : " + menor);
 		return contadorMenor;
 }
 }

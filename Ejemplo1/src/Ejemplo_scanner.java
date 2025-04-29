@@ -8,8 +8,6 @@ public class Ejemplo_scanner {
 		cantidad = cantidadAlumnos();
 		altaAlumnos(cantidad);
 		volverAinscribir(cantidad);
-		
-		
 	}
 
 	public static int cantidadAlumnos() {
@@ -18,7 +16,6 @@ public class Ejemplo_scanner {
 		entrada.nextLine();
 		
 		return cantidad;
-		
 	}
 
 	public static void altaAlumnos(int cantidad) {
@@ -42,6 +39,8 @@ public class Ejemplo_scanner {
 			System.out.println("- " + alumnos[i]);
 		}
 	}
+	
+	
 	public static void volverAinscribir(int cantidad) { // NO VA
 		cantidad ++;
 		int longitud = cantidad * 3;
@@ -69,5 +68,3 @@ public class Ejemplo_scanner {
 				System.out.println("Genial, muchas gracias.");
 	}
 }
-// PISTAS
-	//String.valueof(numero);
