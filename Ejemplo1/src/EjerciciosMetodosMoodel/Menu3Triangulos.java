@@ -24,14 +24,14 @@ public class Menu3Triangulos {
 	// TRIANGULO ISO VACÍO
 	private static void CrearTrianguloIsoVacio(int altura) {
 		for (int i = 0; i < altura; i++) {
-			for (int j = 0; j < altura - i; j++) {
+			for (int j = 0; j < altura - i; j++) { // Espacios externos
 				System.out.print(" ");
 			}
 			for (int k = 0; k < i * 2 + 1; k++) {
 				if (k == 0 || k == i * 2 || i == altura - 1) {
 					System.out.print("*");
 				} else {
-					System.out.print(" ");
+					System.out.print(" "); // Espacios internos
 				}
 			}
 			System.out.println();
