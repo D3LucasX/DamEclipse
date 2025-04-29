@@ -6,12 +6,12 @@ public class Ejemplo_scanner {
 	public static void main(String[] args) {
 		int cantidad = 0;
 		cantidad = cantidadAlumnos();
-		altaAlumnos(cantidad);
-		volverAinscribir(cantidad);
+		String[] alumnos = altaAlumnos(cantidad);
+		volverAinscribir(cantidad, alumnos);
 		
 		
 	}
-
+	// Esta funcion es la que pide el numero de alumnos a registrar
 	public static int cantidadAlumnos() {
 		System.out.println("Introduce el número de alumnos que quiere registrar");
 		int cantidad = entrada.nextInt();
@@ -21,11 +21,12 @@ public class Ejemplo_scanner {
 		
 	}
 
-	public static void altaAlumnos(int cantidad) {
+	// Esta funcion es la que pide los datos de los alumnos
+	public static String[] altaAlumnos(int cantidad) {
 		int numeroAlumno = 1;
 		int longitud = cantidad * 3;
 
-		String[] alumnos = new String[longitud];
+		String[] alumnos = new String[longitud]; //Esto es un array de String.
 		for (int i = 0; i < longitud; i += 3) {
 			System.out.println("Introduce el nombre del alumno " + numeroAlumno);
 			alumnos[i] = entrada.nextLine();
@@ -41,33 +42,42 @@ public class Ejemplo_scanner {
 		for (int i = 0; i < alumnos.length; i++) {
 			System.out.println("- " + alumnos[i]);
 		}
+		return alumnos;
 	}
-	public static void volverAinscribir(int cantidad) { // NO VA
+
+	// Esta funcion es la que pregunta si se quiere añadir un nuevo alumno
+	public static void volverAinscribir(int cantidad, String[]alumnos) { // NO VA
+		//cantidad ++;
+		//int longitud = cantidad * 3;
 		cantidad ++;
 		int longitud = cantidad * 3;
 		
 		System.out.println("¿Desea añadir a un nuevo alumno?");
 		String decision = entrada.nextLine();
-			if(decision.equals("si")) {
-				longitud ++;
-				String[] alumnos = new String[longitud];
+			if(decision.equalsIgnoreCase("si")) {
+				String[] alumnos1 = new String[longitud];
+
+				for (int i = 0; i < alumnos.length; i++){
+					alumnos1[i] = alumnos[i];
+				}
+				int nuevoAlumnoIndex = alumnos.length;
+
 				System.out.println("Introduce el nombre del nuevo alumno: ");
-				alumnos[longitud ] = entrada.nextLine();
-				longitud ++;
+				alumnos1[nuevoAlumnoIndex] = entrada.nextLine();
 				System.out.println("Introduce el appellido del nuevo alumno: ");
+				alumnos1[nuevoAlumnoIndex +1] = entrada.nextLine();
 				int edad = entrada.nextInt();
-				alumnos[longitud] = Integer.toString(edad);
+				alumnos1[nuevoAlumnoIndex +2] = Integer.toString(edad);
 				entrada.nextLine();
-				System.out.println("Introduce la edad del nuevo alumno: ");
-				longitud ++;
-				alumnos[longitud] = entrada.nextLine();
+			
+
+
 				System.out.println("LISTA:");
-				for (int i = 0; i < alumnos.length; i++) {
-					System.out.println("- " + alumnos[i]);
+				for (int i = 0; i < alumnos1.length; i++) {
+					System.out.println("- " + alumnos1[i]);
 				}
 			}else
 				System.out.println("Genial, muchas gracias.");
 	}
 }
-// PISTAS
-	//String.valueof(numero);
+
