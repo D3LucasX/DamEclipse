@@ -11,7 +11,7 @@ public class Ejercicio7 {
 		System.out.println("Introduce un texto: ");
 		String texto = entrada.nextLine();
 		
-		if(texto.length()==0) return 0; // SI LE DA AL ESPACIO NADA MAS EMPEZAR.(DA ERROR PORQUE AL NO SER UNA FUNCION NO DEVUELVE NADA.)
+		if(texto.length()==0) //return 0; // SI LE DA AL ESPACIO NADA MAS EMPEZAR.(DA ERROR PORQUE AL NO SER UNA FUNCION NO DEVUELVE NADA.)
 		
 		if(Character.isLetter(texto.charAt(0))) {
 			contadorPalabras ++;
