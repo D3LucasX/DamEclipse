@@ -13,7 +13,7 @@ public class MultiplicativePersistenceCalculator {
 			public static int persistence(long n) {
 		    int contador = 0;
 		    while (n >= 10){
-		      n = seccionarNumero(n); // n whil be replaced by newNum and if its bigger or equal than 
+		      n = seccionarNumero(n); // n will be replaced by newNum and if its bigger or equal than 
 		                              // 10, it calls the method of seccionarNumero again whith the new numer.
 		      contador ++; // Increase the step count
 		      }

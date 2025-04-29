@@ -11,7 +11,7 @@ public class Ejercicio4 {
 		Scanner entrada = new Scanner(System.in);
 		System.out.println("Introduce un número >= que 0");
 		numeros = entrada.nextInt();
-		while (numeros > 0) {
+		while (numeros < 0) {
 			digitos = 0;
 			resultado = 0;
 			temp = numeros;
