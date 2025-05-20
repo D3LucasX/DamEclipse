@@ -71,6 +71,8 @@ public class Ejecicio3ClasesPrueba {
 	        case 6:
 	            MostrarTodo();
 	            break;
+	        case  7:
+	        	System.out.println("Saliendo...");
 	        default:
 	            System.out.println("Opción no válida.");
 	    }
