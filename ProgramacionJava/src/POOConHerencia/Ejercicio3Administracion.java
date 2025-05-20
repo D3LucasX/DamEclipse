@@ -68,8 +68,7 @@ public class Ejercicio3Administracion extends Ejercicio3Persona{
 
 	@Override
 	public String toString() {
-		return "Ejercicio3Administracion [salario=" + salario + ", estudios=" + estudios + ", antiguedad=" + antiguedad
-				+ ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
+		return "Dni: " + dni + ", nombre: " + nombre + ", apellidos: " + apellidos + "salario: " + salario + ", estudios: " + estudios + ", antiguedad: " + antiguedad;
 	}
 
 	

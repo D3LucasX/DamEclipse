@@ -50,8 +50,7 @@ public class Ejercicio3Clases {
 
 	@Override
 	public String toString() {
-		return "Modulo [nombre=" + nombre + ", horas=" + horas + ", Profesor=" + unProfesor + ", convalidable="
-				+ convalidable + "]";
+		return "Nombre del Módulo: " + nombre + ", Horas Lectivas: " + horas + ", Profesor: " + unProfesor + ", Convidable: " + convalidable;
 	}
 	
 }

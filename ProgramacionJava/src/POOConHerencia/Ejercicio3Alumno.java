@@ -81,9 +81,7 @@ public class Ejercicio3Alumno extends Ejercicio3Persona{
 
 	@Override
 	public String toString() {
-		return "Ejercicio3Alumno [fecha_Nac=" + fecha_Nac + ", sexo=" + sexo + ", repetidor=" + repetidor
-				+ ", unModulo=" + Arrays.toString(unModulo) + ", dni=" + dni + ", nombre=" + nombre + ", apellidos="
-				+ apellidos + ", salario=" + salario + "]";
+		return "Dni: " + dni + ", Nombre: " + nombre + ", Apellidos: "+ apellidos + "Fecha de Nacimiento: " + fecha_Nac + ", Sexo: " + sexo + ", Repetidor: " + repetidor + ", Modumo Matriculado: " + Arrays.toString(unModulo);
 	}
 
 

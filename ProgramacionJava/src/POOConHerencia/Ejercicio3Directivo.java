@@ -68,8 +68,7 @@ public class Ejercicio3Directivo extends Ejercicio3Persona{
 
 	@Override
 	public String toString() {
-		return "Ejercicio3Directivo [salesiano=" + salesiano + ", turno=" + turno + ", dni=" + dni + ", nombre="
-				+ nombre + ", apellidos=" + apellidos + ", salario=" + salario + "]";
+		return "Dni: " + dni + ", Nombre: " + nombre + ", Apellidos: " + apellidos + ", Salario: " + salario + "Salesiano: " + salesiano + ", Turno de mañana: " + turno;
 	}
 
 	

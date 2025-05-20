@@ -1,60 +1,129 @@
 package POOConHerencia;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import POO.Ejercicio3Profesor;
-import POO.TipoCoche;
-import POO.TipoSeguro;
-import POO.coche;
+
 
 public class Ejecicio3ClasesPrueba {
 
+	    public static ArrayList<Ejercicio3Administracion> admins = new ArrayList<>();
+	    public static ArrayList<Ejercicio3Alumno> alumnos = new ArrayList<>();
+	    public static ArrayList<Ejercicio3Directivo> directivos = new ArrayList<>();
+	    public static ArrayList<Ejercicio3Profesor> profesores = new ArrayList<>();
+	    public static ArrayList<Ejercicio3Clases> clases = new ArrayList<>();
+
 	public static void main(String[] args) {
+
+		int opcionEntrada=0;
+		do {
 		Scanner entrada = new Scanner(System.in);
-		int OpcionCreacion = MostrarMenu(entrada);
+		opcionEntrada = MostrarMenu(entrada);
+		ejecutarOpcion(opcionEntrada, entrada);
+		}while(opcionEntrada < 7);
 		
 	}
 	
+	
 	public static void ejecutarOpcion(int opcion, Scanner entrada) {
-		switch(opcion) {
-		case 1:
-				crearAdmin(opcion, entrada);
-			break;
-		case 2:
-				crearDirectivo(opcion, entrada);
-			break;
-		case 3:
-			crearProfesor(opcion, entrada);
-		break;
-		case 4:
-			crearClase(opcion, entrada);
-		break;
-		case 5:
-			MostrarTodo();
-		break;
-		default:	
-			break;
-		}
+	    int cantidad = 0;
+	    switch (opcion) {
+	        case 1:
+	            System.out.println("¿Cuántos Administradores desea crear?");
+	            cantidad = entrada.nextInt();
+	            entrada.nextLine();
+	            for (int i = 0; i < cantidad; i++) {
+	                admins.add(crearAdmin(entrada));
+	            }
+	            break;
+	        case 2:
+	            System.out.println("¿Cuántos Alumnos desea crear?");
+	            cantidad = entrada.nextInt();
+	            entrada.nextLine();
+	            for (int i = 0; i < cantidad; i++) {
+	                alumnos.add(crearAlumno(entrada));
+	            }
+	            break;
+	        case 3:
+	            System.out.println("¿Cuántos Directivos desea crear?");
+	            cantidad = entrada.nextInt();
+	            entrada.nextLine();
+	            for (int i = 0; i < cantidad; i++) {
+	                directivos.add(crearDirectivo(entrada));
+	            }
+	            break;
+	        case 4:
+	            System.out.println("¿Cuántos Profesores desea crear?");
+	            cantidad = entrada.nextInt();
+	            entrada.nextLine();
+	            for (int i = 0; i < cantidad; i++) {
+	                profesores.add(crearProfesor(entrada));
+	            }
+	            break;
+	        case 5:
+	            System.out.println("¿Cuántos Módulos desea crear?");
+	            cantidad = entrada.nextInt();
+	            entrada.nextLine();
+	            for (int i = 0; i < cantidad; i++) {
+	                clases.add(crearClase(entrada));
+	            }
+	            break;
+	        case 6:
+	            MostrarTodo();
+	            break;
+	        default:
+	            System.out.println("Opción no válida.");
+	    }
 	}
 	
 	public static void MostrarTodo() {
-		
-	}
+		System.out.println("---- ADMINISTRATIVOS ----");
+		int contador = 1;
+        for (Ejercicio3Administracion Administradores : admins) {
+            System.out.println("Administrativo numero " + contador + ": " + Administradores);
+            contador ++;
+        }
+        contador = 1;
+        System.out.println("---- ALUMNOS ----");
+        for (Ejercicio3Alumno Alumnos : alumnos) {
+            System.out.println("Alumno numero " + contador + ": " + Alumnos);
+            contador++;
+        }
+        contador = 1;
+        System.out.println("---- DIRECTIVOS ----");
+        for (Ejercicio3Directivo Directivos : directivos) {
+            System.out.println("Directivo numero " + contador + ": " + Directivos);
+            contador++;
+        }
+        contador = 1;
+        System.out.println("---- PROFESORES ----");
+        for (Ejercicio3Profesor Profesores : profesores) {
+            System.out.println("Profesor numero " + contador + ": " + Profesores);
+            contador++;
+        }
+        contador = 1;
+        System.out.println("---- CLASES ----");
+        for (Ejercicio3Clases Modulos : clases) {
+            System.out.println("Modulo numero " + contador + ": " + Modulos);
+            contador++;
+        }
+    }
 	
 	public static int MostrarMenu(Scanner entrada) {
-		System.out.println("Que opcion desea elegir(indiquela con el número correspondiente)");
-		System.out.println("1. Crear Administrador"
-				+ "2. Crear Alumno"
-				+ "3. Crear Directivo"
-				+ "4. Crear Profesor"
-				+ "5. Crear clase"
-				+ "6. Mostrar Todo "
-				+ "7. salir." );
+		 System.out.println("\n¿Qué opción desea elegir? (indique el número correspondiente)");
+	        System.out.println("1. Crear Administrador");
+	        System.out.println("2. Crear Alumno");
+	        System.out.println("3. Crear Directivo");
+	        System.out.println("4. Crear Profesor");
+	        System.out.println("5. Crear Clase");
+	        System.out.println("6. Mostrar Todo");
+	        System.out.println("7. Salir");
 		int OpcionCreacion = entrada.nextInt();
 		entrada.nextLine();
 		return OpcionCreacion;
 	}
 	
-	public static Ejercicio3Administracion crearAdmin(int opcion, Scanner entrada) {
+	public static Ejercicio3Administracion crearAdmin(Scanner entrada) {
 
 				System.out.println("DNI: ");
 				String dni = entrada.nextLine();
@@ -73,7 +142,7 @@ public class Ejecicio3ClasesPrueba {
 			
 				return new Ejercicio3Administracion(dni,nombre, apellidos,salario, estudios, permanencia);
 		}
-	public static Ejercicio3Directivo crearDirectivo(int opcion, Scanner entrada) {
+	public static Ejercicio3Directivo crearDirectivo(Scanner entrada) {
 		int decisionSale = 0;
 		int decisionTurno = 0;
 		boolean esSale = false;
@@ -90,7 +159,7 @@ public class Ejecicio3ClasesPrueba {
 		entrada.nextLine();
 		System.out.println("Estudios: ");
 		String estudios = entrada.nextLine();
-		while (decisionSale != 1 || decisionSale != 2) {
+		while (decisionSale != 1 && decisionSale != 2) {
 		System.out.println("¿Es salesiano?");
 		decisionSale = entrada.nextInt();
 		entrada.nextLine();
@@ -100,7 +169,7 @@ public class Ejecicio3ClasesPrueba {
 		}else {
 			esSale = false;
 		}
-		while (decisionSale != 1 || decisionSale != 2) {
+		while (decisionSale != 1 && decisionSale != 2) {
 			System.out.println("¿Turno de mañana?");
 			decisionTurno = entrada.nextInt();
 			entrada.nextLine();
@@ -113,7 +182,7 @@ public class Ejecicio3ClasesPrueba {
 		
 		return new Ejercicio3Directivo(dni,nombre, apellidos,salario, esSale,esMañana);
 }
-	public static Ejercicio3Alumno crearAlumno(int opcion, Scanner entrada) {
+	public static Ejercicio3Alumno crearAlumno(Scanner entrada) {
 		int decisionRepetidor = 0;
 		boolean esRepetidor = false;
 
@@ -127,7 +196,7 @@ public class Ejecicio3ClasesPrueba {
 		String FechaNacimiento = entrada.nextLine();
 		System.out.println("Sexo: ");
 		String sexo = entrada.nextLine();
-		while (decisionRepetidor != 1 || decisionRepetidor != 2) {
+		while (decisionRepetidor != 1 && decisionRepetidor != 2) {
 			System.out.println("¿Es repetidor?");
 			decisionRepetidor = entrada.nextInt();
 			entrada.nextLine();
@@ -138,12 +207,32 @@ public class Ejecicio3ClasesPrueba {
 				esRepetidor = false;
 			}
 			
-		Ejercicio3Clases[] clase = crearClase(opcion,entrada);
+			if (clases.isEmpty()) {
+	            System.out.println("No hay clases disponibles. Crea una primero.");
+	            return null;
+	        }
+
+	        System.out.println("Clases disponibles:");
+	        for (int i = 0; i < clases.size(); i++) {
+	            System.out.println(i + ": " + clases.get(i).getNombre());
+	        }
+
+	        System.out.println("Seleccione el índice de la clase a la que asistirá el alumno:");
+	        int seleccion = entrada.nextInt();
+	        entrada.nextLine();
+
+	        if (seleccion < 0 || seleccion >= clases.size()) {
+	            System.out.println("Índice inválido. No se creó el alumno.");
+	            return null;
+	        }
+
+	        Ejercicio3Clases[] claseAlumno = new Ejercicio3Clases[1];
+	        claseAlumno[0] = clases.get(seleccion);
 	
-		return new Ejercicio3Alumno(dni,nombre, apellidos,FechaNacimiento, sexo, esRepetidor, clase);
+		return new Ejercicio3Alumno(dni,nombre, apellidos,FechaNacimiento, sexo, esRepetidor, claseAlumno);
 }
 	
-	public static Ejercicio3Profesor crearProfesor(int opcion, Scanner entrada) {
+	public static Ejercicio3Profesor crearProfesor(Scanner entrada) {
 		//String dni, String nombre, String apellidos, int salario, int numero_asignatuas, boolean tutor
 		int decisionTutor = 0;
 		boolean esTutor = false;
@@ -158,7 +247,7 @@ public class Ejecicio3ClasesPrueba {
 		entrada.nextLine();
 		System.out.println("Numero Asignaturas: ");
 		int numAsignaturas= entrada.nextInt();
-		while (decisionTutor != 1 || decisionTutor != 2) {
+		while (decisionTutor != 1 && decisionTutor != 2) {
 			System.out.println("¿Es repetidor?");
 			decisionTutor = entrada.nextInt();
 			entrada.nextLine();
@@ -173,19 +262,33 @@ public class Ejecicio3ClasesPrueba {
 		return new Ejercicio3Profesor(dni,nombre, apellidos,salario, numAsignaturas, esTutor);
 	}
 	
-	//String nombre, int horas, Ejercicio3Profesor unProfesor, boolean convalidable
-	public static Ejercicio3Clases[] crearClase(int opcion, Scanner entrada) {
+
+	public static Ejercicio3Clases crearClase(Scanner entrada) {
 		int decisionConvidable = 0;
 		boolean esConvidable = false;
-		
+		int seleccion = 0;
+		Ejercicio3Profesor profesor;
 		System.out.println("Nombre: ");
 		String nombre = entrada.nextLine();
 		System.out.println("Horas: ");
 		int horas = entrada.nextInt();
 		entrada.nextLine();
-		System.out.println("profesor: ");
-		Ejercicio3Profesor profesor = crearProfesor(opcion,entrada);
-		while (decisionConvidable != 1 || decisionConvidable != 2) {
+		if(profesores.isEmpty()) {
+				System.out.println("No hay profesores en la base de datosd, por favor, inserte uno a continuación: ");
+				profesor = crearProfesor(entrada);
+		}else {
+			System.out.println("Seleccione el profesor que desea asignar a este Módulo: ");
+			for(int i = 0; i < profesores.size(); i++) {
+				System.out.println(i + ": " + profesores.get(i).getNombre());
+			}
+			do {
+			System.out.println("Seleccione el índice del Profesor que asignará al Módulo");
+			seleccion = entrada.nextInt();
+		    entrada.nextLine();
+		}while (seleccion < 0 || seleccion >= profesores.size());
+			profesor =profesores.get(seleccion);
+		}
+		while (decisionConvidable != 1 && decisionConvidable != 2) {
 			System.out.println("¿Es repetidor?");
 			decisionConvidable = entrada.nextInt();
 			entrada.nextLine();
@@ -195,11 +298,8 @@ public class Ejecicio3ClasesPrueba {
 			}else {
 				esConvidable = false;
 			}
-		//POdemos hacer mas clases con bucles y preguntando al usuario
-		Ejercicio3Clases[] nueva;
-		nueva[0]=new Ejercicio3Clases(nombre, horas,profesor, esConvidable);
-			
-		return nueva;
+		
+		return new Ejercicio3Clases(nombre, horas, profesor, esConvidable);
 }
 	
 	

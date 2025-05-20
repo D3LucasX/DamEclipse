@@ -30,8 +30,7 @@ public class Ejercicio3Profesor extends Ejercicio3Persona{
 
 	@Override
 	public String toString() {
-		return "Ejercicio3Profesor [numero_asignatuas=" + numero_asignatuas + ", tutor=" + tutor + ", dni=" + dni
-				+ ", nombre=" + nombre + ", apellidos=" + apellidos + ", salario=" + salario + "]";  //Aqui lueg se comentaría como quisieramos, y cambiariamos el orden de los datos que salen
+		return "Dni: " + dni + ", Nombre: " + nombre + ", Apellidos: " + apellidos + ", Salario: " + salario + "Numero de Asuignaturas que imparte: " + numero_asignatuas + ", Tutor: " + tutor;  
 	}
 
 	
