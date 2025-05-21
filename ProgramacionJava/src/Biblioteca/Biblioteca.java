@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 	String nombre;
-	 private ArrayList<Articulos> articulos;
-	 private ArrayList<Prestamo> prestamos;
+	private ArrayList<Articulos> articulos;
+	private ArrayList<Prestamo> prestamos;
 	public Biblioteca(String nombre) {
 		super();
 		this.nombre = nombre;
@@ -35,5 +35,12 @@ public class Biblioteca {
 	public void agregarArticulo(Articulos articulo) {
 		articulos.add(articulo);
 	}
-	
+	public Articulos buscarArticuloPorId(int id) {
+	    for (Articulos articulo : articulos) {
+	        if (articulo.getId() == id) {
+	            return articulo;
+	        }
+	    }
+	    return null; // No encontrado
+	}
 }
