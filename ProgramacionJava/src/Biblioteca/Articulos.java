@@ -4,10 +4,13 @@ public class Articulos {
 	int id;
 	String titulo;
 	boolean disponivilidad;
+	int contadorPrestamos;
 	public Articulos(int id, String titulo, boolean disponivilidad) {
 		this.id = id;
 		this.titulo = titulo;
 		this.disponivilidad = disponivilidad;
+		this.contadorPrestamos = 0;
+		
 	}
 	public int getId() {
 		return id;
@@ -27,5 +30,8 @@ public class Articulos {
 	public void setDisponivilidad(boolean disponivilidad) {
 		this.disponivilidad = disponivilidad;
 	}
+	public void incrementarContadorPrestamos() {
+        this.contadorPrestamos++;
+    }
 	
 }

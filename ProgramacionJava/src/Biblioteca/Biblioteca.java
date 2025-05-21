@@ -1,14 +1,17 @@
 package Biblioteca;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class Biblioteca {
 	String nombre;
-	Revista [] unaRevista;
-	Libro [] unLibro;
-	public Biblioteca(String nombre, Revista[] unaRevista, Libro[] unLibro) {
+	 private ArrayList<Articulos> articulos;
+	 private ArrayList<Prestamo> prestamos;
+	public Biblioteca(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.unaRevista = unaRevista;
-		this.unLibro = unLibro;
+		this.articulos = new ArrayList<>();
+        this.prestamos = new ArrayList<>();
 	}
 	public String getNombre() {
 		return nombre;
@@ -16,16 +19,21 @@ public class Biblioteca {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Revista[] getUnaRevista() {
-		return unaRevista;
+	public ArrayList<Articulos> getArticulos() {
+		return articulos;
 	}
-	public void setUnaRevista(Revista[] unaRevista) {
-		this.unaRevista = unaRevista;
+	public void setArticulos(ArrayList<Articulos> articulos) {
+		this.articulos = articulos;
 	}
-	public Libro[] getUnLibro() {
-		return unLibro;
+	public ArrayList<Prestamo> getPrestamos() {
+		return prestamos;
 	}
-	public void setUnLibro(Libro[] unLibro) {
-		this.unLibro = unLibro;
+	public void setPrestamos(ArrayList<Prestamo> prestamos) {
+		this.prestamos = prestamos;
 	}
+	
+	public void agregarArticulo(Articulos articulo) {
+		articulos.add(articulo);
+	}
+	
 }
