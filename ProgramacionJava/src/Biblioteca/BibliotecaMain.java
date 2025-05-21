@@ -1,5 +1,6 @@
 package Biblioteca;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class BibliotecaMain {
@@ -46,6 +47,26 @@ public class BibliotecaMain {
 
 		// Y aquí se lo pasas a la biblioteca
 		biblioteca.agregarArticulo(nuevaRevista);
+	}
+	public static void realizarPrestamo(Scanner entrada, Biblioteca biblioteca) {
+		int id;
+		Articulos nuevoArticulo = null;
+		do {
+		System.out.println("Introduzca el ID del libro que quiera alquilar: ");
+		id = entrada.nextInt();
+		entrada.nextLine();
+		nuevoArticulo = biblioteca.buscarArticuloPorId(id);
+		 if (nuevoArticulo == null) {
+		        System.out.println("No se encontró ningún artículo con ese ID.");
+		 }else if (!nuevoArticulo.isDisponivilidad()) {
+			 	System.out.println("Libro no disponible");
+		 }
+		}while(nuevoArticulo == null || !nuevoArticulo.isDisponivilidad());
+		 
+		Prestamo nuevoPrestamo = new Prestamo(nuevoArticulo, LocalDate.now());
+		biblioteca.getPrestamos().add(nuevoPrestamo);
+		System.out.println("Prestamo realizado correctamente.");
+		System.out.println(nuevoPrestamo.toString());
 	}
 
 }

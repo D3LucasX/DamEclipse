@@ -13,6 +13,7 @@ public class Prestamo {
 		this.devuelto = false;
 		
 		articulo.incrementarContadorPrestamos();
+		articulo.setDisponivilidad(false);
 	}
 	public void devolver() {
 		this.devuelto = true;
