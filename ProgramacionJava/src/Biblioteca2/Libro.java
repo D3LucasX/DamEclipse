@@ -1,4 +1,4 @@
-package Biblioteca;
+package Biblioteca2;
 
 public class Libro extends Articulos {
 	String autor;

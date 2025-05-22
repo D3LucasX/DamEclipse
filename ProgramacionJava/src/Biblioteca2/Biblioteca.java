@@ -1,4 +1,4 @@
-package Biblioteca;
+package Biblioteca2;
 
 public class Biblioteca {
 	String nombre;
