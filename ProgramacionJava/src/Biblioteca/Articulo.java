@@ -29,7 +29,7 @@ public class Articulo {
 	}
 	@Override
 	public String toString() {
-		return "Articulo [id=" + id + ", titulo=" + titulo + ", disponible=" + disponible + "]";
+		return "id: " + id + ", Título: " + titulo + ", Disponible: " + disponible ;
 	}
 	
 	

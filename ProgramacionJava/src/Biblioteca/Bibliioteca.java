@@ -14,7 +14,7 @@ public class Bibliioteca {
 		
 	}
 	public void agregarArticulo(Articulo nuevoArticulo) {
-		articulos.add(nuevoArticulo); // pasamos por parametro el articulo a agregar
+		this.articulos.add(nuevoArticulo); // pasamos por parametro el articulo a agregar
 	}
 	public Articulo buscarArtPorId(String idAbuscar) {
 		Articulo articuloEncontrado = null;
@@ -51,6 +51,26 @@ public class Bibliioteca {
 			}
 		}
 		return false;
+	}
+	public void mostrarTodosArticulos() {
+		for (Articulo articulo : this.articulos) {
+			if (articulo != null) {
+				System.out.println(articulo);
+			}
+		}
+	}
+	public void mostrarPrestamos(ArrayList<Prestamo> prestamos) {
+		for(Prestamo prestamo : prestamos) {
+			System.out.println(prestamo.toString());
+		}
+	}
+	public void mostrarPrestamoPorUsuario(ArrayList<Prestamo> prestamos, String usuarioAbuscar) {
+		for(Prestamo prestamo : prestamos) {
+			Usuario usuPrestamo = prestamo.getUsuario();
+			if (usuPrestamo.getIdusuario() == usuarioAbuscar) {
+				System.out.println(prestamo.toString());
+			}
+		}
 	}
 	@Override
 	public String toString() {
