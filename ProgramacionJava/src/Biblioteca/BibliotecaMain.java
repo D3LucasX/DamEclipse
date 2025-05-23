@@ -62,7 +62,7 @@ public class BibliotecaMain {
 			 * y no que lo busque en la lista, porque la lista es la misma,
 			 * así que si está vacía, no va a encontrar nada, así que articuloAagregar estara vacío
 			 * 
-			 * TODO: arreglar esto.
+			 * Solucionado: Añadi una funcion de agregar a la lista un articulo desde 0.
 			 */
 			Articulo articuloaAgregar = null;
 			System.out.println("Que libro desea agregar? (Introduce el id del libro)");
