@@ -15,11 +15,13 @@ public class Bibliioteca {
 	}
 	public void agregarArticulo(Articulo nuevoArticulo) {
 		this.articulos.add(nuevoArticulo); // pasamos por parametro el articulo a agregar
+		System.out.println("Articulo agregado con exito. ");
+		System.out.println();
 	}
 	public Articulo buscarArtPorId(String idAbuscar) {
 		Articulo articuloEncontrado = null;
 		for(Articulo articulo : articulos) {
-			if (articulo.getId() == idAbuscar) {
+			if (articulo.getId().equals(idAbuscar)) {
 				articuloEncontrado = articulo;
 			}
 		}
@@ -29,29 +31,52 @@ public class Bibliioteca {
 	public boolean prestarArticulo(String idUsu, Usuario usuario, LocalDate fecha) {
 		boolean dispon = false;
 		Articulo articuloAprestar = null;
-		while(dispon) {
 			articuloAprestar = buscarArtPorId(idUsu);
+			/*
+			 * Comprobamos primero si el articulo es null para que si lo es, no trate de buscar el id de un
+			 * null por que daria el error de nullpointer
+			 */
+			if (articuloAprestar == null) {
+		        System.out.println("No se encontró el artículo con ID: " + idUsu);
+		        return false;
+		    }
 			if(!articuloAprestar.isDisponible()) {
 				System.out.println("El articulo que busca no está disponible");
+				return false;
 			}else {
 				System.out.println("Artículo disponible");
 				dispon = true;
 				return true;
 			}
-		}
-		return false;
 	}
 	
 	public boolean devolverArticulo(String idAdevolver) {
-		Articulo articuloAdevolver = buscarArtPorId(idAdevolver);
-		String idPrestado = articuloAdevolver.getId();
-		for(Prestamo prestamo : prestamos) {
-			if (idPrestado == articuloAdevolver.id && !articuloAdevolver.isDisponible()) {
-				return true;
-			}
+		 Articulo articuloAdevolver = buscarArtPorId(idAdevolver);
+		 	// Si no encuentra el artículo.
+		    if (articuloAdevolver == null) {
+		        System.out.println("Artículo no encontrado.");
+		        return false;
+		    }
+
+		    // Buscamos el préstamo correspondiente
+		    Prestamo prestamoAEliminar = null;
+		    for (Prestamo prestamo : prestamos) {
+		        if (prestamo.getArticulo().getId().equals(articuloAdevolver.getId())) {
+		            prestamoAEliminar = prestamo;
+		            break;
+		        }
+		    }
+		    // Si lo encuentra el prestamo(Si no está a null) y no está disponible
+		    	// Lo pone en disponible y lo elimina de la lista con remove.
+		    if (prestamoAEliminar != null && !articuloAdevolver.isDisponible()) {
+		        articuloAdevolver.setDisponible(true);
+		        prestamos.remove(prestamoAEliminar);
+		        return true;
+		    }
+
+		    return false;
 		}
-		return false;
-	}
+	
 	public void mostrarTodosArticulos() {
 		for (Articulo articulo : this.articulos) {
 			if (articulo != null) {
@@ -67,7 +92,7 @@ public class Bibliioteca {
 	public void mostrarPrestamoPorUsuario(ArrayList<Prestamo> prestamos, String usuarioAbuscar) {
 		for(Prestamo prestamo : prestamos) {
 			Usuario usuPrestamo = prestamo.getUsuario();
-			if (usuPrestamo.getIdusuario() == usuarioAbuscar) {
+			if (usuPrestamo.getIdusuario().equals(usuarioAbuscar)) {
 				System.out.println(prestamo.toString());
 			}
 		}

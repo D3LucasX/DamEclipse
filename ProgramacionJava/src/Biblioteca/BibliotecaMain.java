@@ -30,20 +30,20 @@ public class BibliotecaMain {
 		
 		menu(entrada,MiBiblioteca, articulos,prestamos, usuarios);
 		
-		
 	}
 	public static void menu(Scanner entrada, Bibliioteca MiBiblioteca, ArrayList<Articulo> articulos,ArrayList<Prestamo> prestamos,  ArrayList<Usuario> usuarios) {
 		int seleccion = 0;
 		do {
 		System.out.println("----Menu Biblioteca----");
-		System.out.println("1. Agregar Articulo");
-		System.out.println("2. Buscar artículo por id.");
-		System.out.println("3. Prestar articulo");
-		System.out.println("4. Devolver Artículo");
-		System.out.println("5. Mostrar todos los atrículos");
-		System.out.println("6. Mostrar todos los préstamos");
-		System.out.println("7. Mostrar prestamos por usuario");
-		System.out.println("8. Salir");
+		System.out.println("1. Agregar Articulo ya en la lista");
+		System.out.println("2. Agregar nuevo artículo");
+		System.out.println("3. Buscar artículo por id.");
+		System.out.println("4. Prestar articulo");
+		System.out.println("5. Devolver Artículo");
+		System.out.println("6. Mostrar todos los atrículos");
+		System.out.println("7. Mostrar todos los préstamos");
+		System.out.println("8. Mostrar prestamos por usuario");
+		System.out.println("9. Salir");
 		System.out.println("Seleccione la opcion que desee: ");
 		seleccion = entrada.nextInt();
 		entrada.nextLine();
@@ -65,7 +65,7 @@ public class BibliotecaMain {
 			 * TODO: arreglar esto.
 			 */
 			Articulo articuloaAgregar = null;
-			System.out.println("Que libro desea agregar? 1 o 2");
+			System.out.println("Que libro desea agregar? (Introduce el id del libro)");
 			String eleccion = entrada.nextLine();
 			for(Articulo articulo : articulos) {
 				if(articulo.id.equals(eleccion)) {
@@ -75,48 +75,110 @@ public class BibliotecaMain {
 			MiBiblioteca.agregarArticulo(articuloaAgregar);
 			break;
 		case 2:
-			System.out.println("Que libro desea buscar? 1 o 2");
-			String eleccion2 = entrada.nextLine();
-			MiBiblioteca.buscarArtPorId(eleccion2);
+			//String id, String titulo, boolean disponible, String autor
+			boolean estaDispon = true;
+			System.out.println("Es un libro lo que quiere registrar?: ");
+			String esLibro = entrada.nextLine();
+			if (esLibro.equals("si") || esLibro.equals("Si")) {
+				System.out.println("Introduce el ID: ");
+				String idLib = entrada.nextLine();
+				System.out.println("Introduce el título del libro: ");
+				String titulo = entrada.nextLine();
+				System.out.println("Esta disponible actualmente? (Si o no)");
+				String disponible = entrada.nextLine();
+				if (disponible.equals("Si") || disponible.equals("si")) {
+					estaDispon = true;
+				}else {
+					estaDispon = false;
+				}
+				System.out.println("Introduce el nombre del autor: ");
+				String nombreAutor = entrada.nextLine();
+				Libro libroNuevo = new Libro(idLib, titulo, estaDispon, nombreAutor);
+				MiBiblioteca.agregarArticulo(libroNuevo);
+			}else {
+				System.out.println("Introduce el ID: ");
+				String idLib = entrada.nextLine();
+				System.out.println("Introduce el título del libro: ");
+				String titulo = entrada.nextLine();
+				System.out.println("Esta disponible actualmente? (Si o no)");
+				String disponible = entrada.nextLine();
+				if (disponible.equals("Si") || disponible.equals("si")) {
+					estaDispon = true;
+				}else {
+					estaDispon = false;
+				}
+				System.out.println("Introduce el número de edición: ");
+				int numeroEdicion = entrada.nextInt();
+				entrada.nextLine();
+				Revista RevistaNueva = new Revista(idLib, titulo, estaDispon, numeroEdicion);
+				MiBiblioteca.agregarArticulo(RevistaNueva);
+			}
 			break;
 		case 3:
+			System.out.println("Que libro desea buscar? (Introduce el ID del libro)");
+			String eleccion2 = entrada.nextLine();
+			System.out.println(MiBiblioteca.buscarArtPorId(eleccion2));
+			System.out.println();
+			break;
+		case 4:
 			Usuario seleccionUsu = null;
 			System.out.println("Que id es del libro que quieres reservar?");
 			String id = entrada.nextLine();
 			Articulo articuloaReservar = MiBiblioteca.buscarArtPorId(id);
-			System.out.println("Que usuario eres? 1 0 2");
+			if (articuloaReservar == null) {
+			    System.out.println("Artículo no encontrado.");
+			    break;
+			}
+			System.out.println("Que usuario eres? (Introduce el ID)");
 			String eleccion3 = entrada.nextLine();
 			for(Usuario usuario : usuarios) {
-				if(usuario.getIdusuario()== eleccion3) {
+				if(usuario.getIdusuario().equals(eleccion3)) {
 					seleccionUsu = usuario;
 				}
+			}
+			if (seleccionUsu == null) {
+				System.out.println("Usuario no encontrado.");
+				break;
+			}
 			boolean comprobacion = MiBiblioteca.prestarArticulo(eleccion3,seleccionUsu,LocalDate.now());
 			if(comprobacion == true) {
 				 Prestamo nuevoPrestamo = new Prestamo(articuloaReservar, seleccionUsu, LocalDate.now());
+				 prestamos.add(nuevoPrestamo);
 				 nuevoPrestamo.incrementarContador();
-			}
+				 articuloaReservar.setDisponible(false);
+				 System.out.println("Nuevo prestamo realizado con éxito. ");
 			}
 			break;
-		case 4:
+		case 5:
 			System.out.println("Dime el id del libro que quieres devolver: ");
 			String idaDevolver =  entrada.nextLine();
-			MiBiblioteca.devolverArticulo(idaDevolver);
-		case 5:
-			MiBiblioteca.mostrarTodosArticulos();
+			boolean devuelto = MiBiblioteca.devolverArticulo(idaDevolver);
+			if(devuelto) {
+				System.out.println("Articulo devuelto correctamente.");
+				System.out.println();
+			}else {
+				System.out.println("No se ha podido devolver el artículo.");
+				System.out.println();
+			}
+			break;
 		case 6:
-			MiBiblioteca.mostrarPrestamos(prestamos);
+			MiBiblioteca.mostrarTodosArticulos();
+			break;
 		case 7:
+			MiBiblioteca.mostrarPrestamos(prestamos);
+			break;
+		case 8:
 			System.out.println("Escribe el ID del usuario que realizo el prestamo: ");
 			String idUsu = entrada.nextLine();
 			MiBiblioteca.mostrarPrestamoPorUsuario(prestamos, idUsu);
 			break;
-		case 8:
+		case 9:
 			System.out.println("SALIENDO...");
 			break;
 			default:
 				System.out.println("Selección inválida, seleccione una opcion válida");
 	}
-	}while(seleccion != 8);
+	}while(seleccion != 9);
 
 }
 }
