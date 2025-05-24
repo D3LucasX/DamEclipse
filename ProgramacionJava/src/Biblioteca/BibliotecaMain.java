@@ -74,14 +74,24 @@ public class BibliotecaMain {
 			}
 			MiBiblioteca.agregarArticulo(articuloaAgregar);
 			break;
-		case 2:
-			//String id, String titulo, boolean disponible, String autor
+		case 2:;
 			boolean estaDispon = true;
+			boolean repetido = false;
 			System.out.println("Es un libro lo que quiere registrar?: ");
 			String esLibro = entrada.nextLine();
 			if (esLibro.equals("si") || esLibro.equals("Si")) {
-				System.out.println("Introduce el ID: ");
-				String idLib = entrada.nextLine();
+				String idLib;
+				do {
+					System.out.println("Introduce el ID: ");
+					idLib = entrada.nextLine();
+					repetido = MiBiblioteca.idRepetido(idLib);
+					if (repetido) {
+						System.out.println("Ese ideentificasdor ya esta en uso.");
+						System.out.println("Por favor, introduzca un id correcto.");
+					}else {
+						System.out.println("Identificador válido.");
+					}
+				}while(repetido == true);
 				System.out.println("Introduce el título del libro: ");
 				String titulo = entrada.nextLine();
 				System.out.println("Esta disponible actualmente? (Si o no)");

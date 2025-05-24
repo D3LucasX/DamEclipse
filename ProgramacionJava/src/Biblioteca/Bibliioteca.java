@@ -13,6 +13,14 @@ public class Bibliioteca {
 		this.prestamos = prestamos;
 		
 	}
+	public boolean idRepetido(String idAbuscar) {
+		for (Articulo articulo : articulos) {
+			if(articulo.getId().equals(idAbuscar)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public void agregarArticulo(Articulo nuevoArticulo) {
 		this.articulos.add(nuevoArticulo); // pasamos por parametro el articulo a agregar
 		System.out.println("Articulo agregado con exito. ");
@@ -23,9 +31,10 @@ public class Bibliioteca {
 		for(Articulo articulo : articulos) {
 			if (articulo.getId().equals(idAbuscar)) {
 				articuloEncontrado = articulo;
+				return articuloEncontrado;
 			}
 		}
-		return articuloEncontrado;
+		return null;
 	}
 	
 	public boolean prestarArticulo(String idUsu, Usuario usuario, LocalDate fecha) {
