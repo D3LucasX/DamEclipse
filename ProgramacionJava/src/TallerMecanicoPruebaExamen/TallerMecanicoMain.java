@@ -267,5 +267,43 @@ public class TallerMecanicoMain {
 			System.out.println("Primero debe de darse de alta en nuestro sistema.");
 		}
 	}
+	public static void mostrarListaDeUsuarios(ArrayList<Propietarios> propietarios) {
+		for (Propietarios propietarioAimprimir : propietarios) {
+			System.out.println(propietarioAimprimir.toString());
+		}
+	}
+	public static void mostrarMenu() {
+		System.out.println("----Menu del taller----");
+		System.out.println("1. Dar de alta a un paciente. ");
+		System.out.println("2. Registrar un vehiculo.");
+		System.out.println("3. Registrar una reparación.");
+		System.out.println("4. Mostrar lista de usuarios.");
+		System.out.println("5. Mostrar Usuario por Id.");
+		System.out.println("6. Mostrar todos los vehiculos.");
+		System.out.println("7. Mostrar los vehiculos por id.");
+		System.out.println("8. Mostrar Listado de reparaciones.");
+		System.out.println("9. Mostrar reparaciones por usuario");
+	}
+	public static void ejecutarOpcion(int opcion, Scanner entrada, ArrayList<Propietarios> propietarios, ArrayList<Vehiculos> vehiculos, TallerMecanico tallerJose, ArrayList<Reparaciones> reparaciones) {
+		switch (opcion){
+		case 1:
+			Propietarios nuevoPropietario = crearUsuario(entrada);
+			propietarios.add(nuevoPropietario);
+			break;
+		case 2:
+			Vehiculos vehiculoNuevo = darDeAlta(entrada, vehiculos);
+			vehiculos.add(vehiculoNuevo);
+			break;
+		case 3:
+			hacerReparacion(entrada,  tallerJose, vehiculos, propietarios, reparaciones);
+			break;
+		case 4:
+			mostrarListaDeUsuarios(propietarios);
+			break;
+		case 5:
+			
+		}
+		
+	}
 }
 
