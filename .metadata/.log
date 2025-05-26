@@ -288,3 +288,865 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2025-05-26 08:46:03.114 -----------------------------------------------
+eclipse.buildId=4.35.0.20250306-0811
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY ch.qos.logback.classic 1 0 2025-05-26 08:46:45.526
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-05-26 08:46:51.969
+!MESSAGE Logback config file: C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.0.20241001-1350.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-05-26 08:46:58.852
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Dam'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-05-26 09:26:34.353
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package TallerMecanicoPruebaExamen;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TallerMecanicoMain {
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
+		ArrayList<Reparaciones> reparaciones = new ArrayList<>();
+		ArrayList<Propietarios> usuarios = new ArrayList<>();
+		TallerMecanico TallerJose = new TallerMecanico("TallerJose",vehiculos, reparaciones);
+	}
+	public static Vehiculos darDeAlta(Scanner entrada, ArrayList<Vehiculos> vehiculos) {
+		String DecisionCoche;
+		boolean esCoche;
+		String ultimoRegistro;
+		String marca;
+		String modelo;
+		String color;
+		int ano;
+		int precioSalida;
+		double velocidadMaxima;
+		int numeroPuertas;
+		String combustible;
+		TipoCombustible tipoCombus = null;
+		int valido = 0;
+		boolean airbag = false;
+		String decisionAirbag;
+		boolean automatico = false;
+		String decisionAutomatico;
+		boolean sidecar = false;
+		String decisionSidecar;
+		boolean deportiva = false;
+		String decisionDeportiva;
+		int cilindrada = 0;
+		Vehiculos nuevoVehiculo = null;
+		System.out.println("¿Es un coche?");
+		DecisionCoche = entrada.nextLine();
+		esCoche = nuevoVehiculo.esCoche(DecisionCoche);
+		if (esCoche) {
+			if (!vehiculos.isEmpty()) {
+				ultimoRegistro = vehiculos.get(vehiculos.size() - 1).getIdRegistro();
+				int UltiRegNum= Integer.parseInt(ultimoRegistro) + 1;
+				ultimoRegistro = Integer.toString(UltiRegNum);
+			}else {
+				ultimoRegistro = "1";
+			}
+			System.out.println("Escribe la marca");
+			marca = entrada.nextLine();
+			System.out.println("Introduce el modelo.");
+			modelo = entrada.nextLine();
+			System.out.println("Introduce el color");
+			color = entrada.nextLine();
+			System.out.println("Introduce el año");
+			ano = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Precio de salida?");
+			precioSalida = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Velocidad máxima?");
+			velocidadMaxima = entrada.nextDouble();
+			entrada.nextLine();
+			System.out.println("¿Cuantas puertas tiene?");
+			numeroPuertas = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("Que tipo de combustible consume (DIESEL O GASOLINA)");
+			combustible = entrada.nextLine();
+			while (valido == 0) {
+				if (combustible.toUpperCase().equals("DIESEL")) {
+					tipoCombus = TipoCombustible.DIESEL;
+					valido = 1;
+				}else if (combustible.toUpperCase().equals("GASOLINA")) {
+					tipoCombus = TipoCombustible.GASOLINA;
+					valido = 1;
+				}else{
+					System.out.println("Introduzca un daato válido.");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Tiene AirBag? (is o no)");
+			decisionAirbag = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionAirbag.toLowerCase().equals("si")) {
+					airbag = true;
+					valido = 1;
+				}else if (decisionAirbag.toLowerCase().equals("no")) {
+					airbag = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Es automático? (is o no)");
+			decisionAutomatico = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionAutomatico.toLowerCase().equals("si")) {
+					automatico = true;
+					valido = 1;
+				}else if (decisionAutomatico.toLowerCase().equals("no")) {
+					automatico = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			Coches nuevoCoche = new Coches(ultimoRegistro, marca, modelo, color, ano, precioSalida, velocidadMaxima, numeroPuertas, tipoCombus, airbag, automatico);
+			return nuevoCoche;
+		}else {
+			if (!vehiculos.isEmpty()) {
+				ultimoRegistro = vehiculos.get(vehiculos.size() - 1).getIdRegistro();
+				int UltiRegNum= Integer.parseInt(ultimoRegistro) + 1;
+				ultimoRegistro = Integer.toString(UltiRegNum);
+			}else {
+				ultimoRegistro = "1";
+			}
+			System.out.println("Escribe la marca");
+			marca = entrada.nextLine();
+			System.out.println("Introduce el modelo.");
+			modelo = entrada.nextLine();
+			System.out.println("Introduce el color");
+			color = entrada.nextLine();
+			System.out.println("Introduce el año");
+			ano = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Precio de salida?");
+			precioSalida = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Velocidad máxima?");
+			velocidadMaxima = entrada.nextDouble();
+			entrada.nextLine();
+			System.out.println("¿Cilindrada?");
+			cilindrada = entrada.nextInt();
+			entrada.nextLine();
+			valido = 0;
+			System.out.println("¿Tiene sidecar? (is o no)");
+			decisionSidecar = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionSidecar.toLowerCase().equals("si")) {
+					sidecar = true;
+					valido = 1;
+				}else if (decisionSidecar.toLowerCase().equals("no")) {
+					sidecar = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Es deportiva? (is o no)");
+			decisionDeportiva = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionDeportiva.toLowerCase().equals("si")) {
+					deportiva = true;
+					valido = 1;
+				}else if (decisionDeportiva.toLowerCase().equals("no")) {
+					deportiva = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			Motos nuevaMoto = new Motos(ultimoRegistro, marca, modelo, color, ano, precioSalida, velocidadMaxima, cilindrada, sidecar, deportiva);
+			return nuevaMoto;
+		}
+	}
+	public static Propietarios crearUsuario(Scanner entrada) {
+		/*(String dni, String nombre, String cuentaBancaria,
+				TallerMecanicoPruebaExamen.TipoSeguro tipoSeguro*/
+		String dni;
+		String nombre;
+		String cuentaBancaria;
+		TipoSeguro tipoSeg = null;
+		String tipoSeguro;
+		int valido = 0;
+		System.out.println("----FORMULARIO DE INSCRIPCIÓN------");
+		System.out.println("Numero de DNI");
+		dni = entrada.nextLine();
+		System.out.println("Nombre");
+		nombre = entrada.nextLine();
+		System.out.println("Numero de cuenta bancaria:");
+		cuentaBancaria = entrada.nextLine();
+		System.out.println("¿Que tipo de seguro tienes? (TERCEROS O TODO RIESGO)");
+		tipoSeguro = entrada.nextLine();
+		while (valido == 0) {
+			if (tipoSeguro.toUpperCase().equals("TERCEROS")) {
+				tipoSeg = TipoSeguro.TERCEROS;
+				valido = 1;
+			}else if (tipoSeguro.toUpperCase().equals("TODO RIESGO")) {
+				tipoSeg = TipoSeguro.TODO_RIESGO;
+				valido = 1;
+			}else{
+				System.out.println("Introduzca un daato válido.");
+				valido = 0;
+			}
+		}
+		Propietarios nuevoUsuario = new Propietarios(dni, nombre, cuentaBancaria, tipoSeg);
+		return nuevoUsuario;
+	}
+	public static boolean estaUsuario(String dniPropietario,  ArrayList<Propietarios> usuarios) {
+		String dniAbuscar;
+		boolean existe = false;
+		for (Propietarios usuarioAbuscar : usuarios) {
+			dniAbuscar = usuarioAbuscar.getDni();
+			if (dniAbuscar.equals(dniPropietario)) {
+				existe = true;
+			}else {
+				existe = false;
+			}
+		}
+		return existe;
+	}
+	public static void hacerReparacion(Scanner entrada, TallerMecanico TallerJose, ArrayList<Vehiculos> vehiculos, ArrayList<Propietarios> usuarios, ArrayList<Reparaciones> reparaciones ) {
+		Vehiculos vehiculoAreparar = null;
+		Propietarios propietarioReparacion = null;
+		String dniPropietario;
+		String idAcomparar;
+		String idAbuscar;
+		String dniaBuscar;
+		String dniAcomparar;
+		String comentario;
+		String decisionComent;
+		boolean estaElVehiculo = false;
+		System.out.println("Introduce el dni del usuario");
+		dniaBuscar = entrada.nextLine();
+		boolean existeElUsuario = estaUsuario(dniaBuscar, usuarios);
+		
+		if(existeElUsuario) {
+			for (Propietarios usuarioReparacion : usuarios) {
+				dniAcomparar = usuarioReparacion.getDni();
+				if(dniAcomparar.equals(dniaBuscar)) {
+					propietarioReparacion = usuarioReparacion;
+				}
+			}
+			System.out.println("Introduzca el id de registro del vehiculo: ");
+			idAbuscar = entrada.nextLine();
+			estaElVehiculo = TallerJose.estaElVehiculo(idAbuscar);
+			if (estaElVehiculo) {
+				for(Vehiculos vehiculo : vehiculos) {
+					idAcomparar = vehiculo.getIdRegistro();
+					if (idAcomparar.equals(idAbuscar)) {
+						vehiculoAreparar = vehiculo;
+					}
+				}
+				System.out.println("¿Quieres añadir un comentario? (si o no)");
+				decisionComent = entrada.nextLine();
+				if (decisionComent.toLowerCase().equals("si")) {
+					System.out.println("Agregue el comentario: ");
+					comentario = entrada.nextLine();
+				}else {
+					comentario = null;
+				}
+				Reparaciones nuevaReparacion = new Reparaciones(vehiculoAreparar, propietarioReparacion, LocalDate.now(),comentario);
+				reparaciones.add(nuevaReparacion);
+				System.out.println("Reparacion registrada con exito");
+			}else {
+				System.out.println("Primero debe registrar su vehiculo.");
+			}
+		}else {
+			System.out.println("Primero debe de darse de alta en nuestro sistema.");
+		}
+	}
+	public static void mostrarListaDeUsuarios(ArrayList<Propietarios> propietarios) {
+		for (Propietarios propietarioAimprimir : propietarios) {
+			System.out.println(propietarioAimprimir.toString());
+		}
+	}
+	public static void mostrarUsuPorId()
+	public static void mostrarMenu() {
+		System.out.println("----Menu del taller----");
+		System.out.println("1. Dar de alta a un paciente. ");
+		System.out.println("2. Registrar un vehiculo.");
+		System.out.println("3. Registrar una reparación.");
+		System.out.println("4. Mostrar lista de usuarios.");
+		System.out.println("5. Mostrar Usuario por Id.");
+		System.out.println("6. Mostrar todos los vehiculos.");
+		System.out.println("7. Mostrar los vehiculos por id.");
+		System.out.println("8. Mostrar Listado de reparaciones.");
+		System.out.println("9. Mostrar reparaciones por usuario");
+	}
+	public static void ejecutarOpcion(int opcion, Scanner entrada, ArrayList<Propietarios> propietarios, ArrayList<Vehiculos> vehiculos, TallerMecanico tallerJose, ArrayList<Reparaciones> reparaciones) {
+		switch (opcion){
+		case 1:
+			Propietarios nuevoPropietario = crearUsuario(entrada);
+			propietarios.add(nuevoPropietario);
+			break;
+		case 2:
+			Vehiculos vehiculoNuevo = darDeAlta(entrada, vehiculos);
+			vehiculos.add(vehiculoNuevo);
+			break;
+		case 3:
+			hacerReparacion(entrada,  tallerJose, vehiculos, propietarios, reparaciones);
+			break;
+		case 4:
+			mostrarListaDeUsuarios(propietarios);
+			break;
+		case 5:
+			
+		}
+		
+	}
+}
+
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-39 startPosition= 9546
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-05-26 09:26:34.357
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-39 startPosition= 9546
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-05-26 09:26:34.361
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-39 startPosition= 9546
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-05-26 09:26:35.095
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package TallerMecanicoPruebaExamen;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TallerMecanicoMain {
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		ArrayList<Vehiculos> vehiculos = new ArrayList<>();
+		ArrayList<Reparaciones> reparaciones = new ArrayList<>();
+		ArrayList<Propietarios> usuarios = new ArrayList<>();
+		TallerMecanico TallerJose = new TallerMecanico("TallerJose",vehiculos, reparaciones);
+	}
+	public static Vehiculos darDeAlta(Scanner entrada, ArrayList<Vehiculos> vehiculos) {
+		String DecisionCoche;
+		boolean esCoche;
+		String ultimoRegistro;
+		String marca;
+		String modelo;
+		String color;
+		int ano;
+		int precioSalida;
+		double velocidadMaxima;
+		int numeroPuertas;
+		String combustible;
+		TipoCombustible tipoCombus = null;
+		int valido = 0;
+		boolean airbag = false;
+		String decisionAirbag;
+		boolean automatico = false;
+		String decisionAutomatico;
+		boolean sidecar = false;
+		String decisionSidecar;
+		boolean deportiva = false;
+		String decisionDeportiva;
+		int cilindrada = 0;
+		Vehiculos nuevoVehiculo = null;
+		System.out.println("¿Es un coche?");
+		DecisionCoche = entrada.nextLine();
+		esCoche = nuevoVehiculo.esCoche(DecisionCoche);
+		if (esCoche) {
+			if (!vehiculos.isEmpty()) {
+				ultimoRegistro = vehiculos.get(vehiculos.size() - 1).getIdRegistro();
+				int UltiRegNum= Integer.parseInt(ultimoRegistro) + 1;
+				ultimoRegistro = Integer.toString(UltiRegNum);
+			}else {
+				ultimoRegistro = "1";
+			}
+			System.out.println("Escribe la marca");
+			marca = entrada.nextLine();
+			System.out.println("Introduce el modelo.");
+			modelo = entrada.nextLine();
+			System.out.println("Introduce el color");
+			color = entrada.nextLine();
+			System.out.println("Introduce el año");
+			ano = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Precio de salida?");
+			precioSalida = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Velocidad máxima?");
+			velocidadMaxima = entrada.nextDouble();
+			entrada.nextLine();
+			System.out.println("¿Cuantas puertas tiene?");
+			numeroPuertas = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("Que tipo de combustible consume (DIESEL O GASOLINA)");
+			combustible = entrada.nextLine();
+			while (valido == 0) {
+				if (combustible.toUpperCase().equals("DIESEL")) {
+					tipoCombus = TipoCombustible.DIESEL;
+					valido = 1;
+				}else if (combustible.toUpperCase().equals("GASOLINA")) {
+					tipoCombus = TipoCombustible.GASOLINA;
+					valido = 1;
+				}else{
+					System.out.println("Introduzca un daato válido.");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Tiene AirBag? (is o no)");
+			decisionAirbag = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionAirbag.toLowerCase().equals("si")) {
+					airbag = true;
+					valido = 1;
+				}else if (decisionAirbag.toLowerCase().equals("no")) {
+					airbag = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Es automático? (is o no)");
+			decisionAutomatico = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionAutomatico.toLowerCase().equals("si")) {
+					automatico = true;
+					valido = 1;
+				}else if (decisionAutomatico.toLowerCase().equals("no")) {
+					automatico = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			Coches nuevoCoche = new Coches(ultimoRegistro, marca, modelo, color, ano, precioSalida, velocidadMaxima, numeroPuertas, tipoCombus, airbag, automatico);
+			return nuevoCoche;
+		}else {
+			if (!vehiculos.isEmpty()) {
+				ultimoRegistro = vehiculos.get(vehiculos.size() - 1).getIdRegistro();
+				int UltiRegNum= Integer.parseInt(ultimoRegistro) + 1;
+				ultimoRegistro = Integer.toString(UltiRegNum);
+			}else {
+				ultimoRegistro = "1";
+			}
+			System.out.println("Escribe la marca");
+			marca = entrada.nextLine();
+			System.out.println("Introduce el modelo.");
+			modelo = entrada.nextLine();
+			System.out.println("Introduce el color");
+			color = entrada.nextLine();
+			System.out.println("Introduce el año");
+			ano = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Precio de salida?");
+			precioSalida = entrada.nextInt();
+			entrada.nextLine();
+			System.out.println("¿Velocidad máxima?");
+			velocidadMaxima = entrada.nextDouble();
+			entrada.nextLine();
+			System.out.println("¿Cilindrada?");
+			cilindrada = entrada.nextInt();
+			entrada.nextLine();
+			valido = 0;
+			System.out.println("¿Tiene sidecar? (is o no)");
+			decisionSidecar = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionSidecar.toLowerCase().equals("si")) {
+					sidecar = true;
+					valido = 1;
+				}else if (decisionSidecar.toLowerCase().equals("no")) {
+					sidecar = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			valido = 0;
+			System.out.println("¿Es deportiva? (is o no)");
+			decisionDeportiva = entrada.nextLine();
+			while (valido == 0) {
+				if (decisionDeportiva.toLowerCase().equals("si")) {
+					deportiva = true;
+					valido = 1;
+				}else if (decisionDeportiva.toLowerCase().equals("no")) {
+					deportiva = false;
+					valido = 1;
+				}else {
+					System.out.println("Introduzca una respuesta válida-");
+					valido = 0;
+				}
+			}
+			Motos nuevaMoto = new Motos(ultimoRegistro, marca, modelo, color, ano, precioSalida, velocidadMaxima, cilindrada, sidecar, deportiva);
+			return nuevaMoto;
+		}
+	}
+	public static Propietarios crearUsuario(Scanner entrada) {
+		/*(String dni, String nombre, String cuentaBancaria,
+				TallerMecanicoPruebaExamen.TipoSeguro tipoSeguro*/
+		String dni;
+		String nombre;
+		String cuentaBancaria;
+		TipoSeguro tipoSeg = null;
+		String tipoSeguro;
+		int valido = 0;
+		System.out.println("----FORMULARIO DE INSCRIPCIÓN------");
+		System.out.println("Numero de DNI");
+		dni = entrada.nextLine();
+		System.out.println("Nombre");
+		nombre = entrada.nextLine();
+		System.out.println("Numero de cuenta bancaria:");
+		cuentaBancaria = entrada.nextLine();
+		System.out.println("¿Que tipo de seguro tienes? (TERCEROS O TODO RIESGO)");
+		tipoSeguro = entrada.nextLine();
+		while (valido == 0) {
+			if (tipoSeguro.toUpperCase().equals("TERCEROS")) {
+				tipoSeg = TipoSeguro.TERCEROS;
+				valido = 1;
+			}else if (tipoSeguro.toUpperCase().equals("TODO RIESGO")) {
+				tipoSeg = TipoSeguro.TODO_RIESGO;
+				valido = 1;
+			}else{
+				System.out.println("Introduzca un daato válido.");
+				valido = 0;
+			}
+		}
+		Propietarios nuevoUsuario = new Propietarios(dni, nombre, cuentaBancaria, tipoSeg);
+		return nuevoUsuario;
+	}
+	public static boolean estaUsuario(String dniPropietario,  ArrayList<Propietarios> usuarios) {
+		String dniAbuscar;
+		boolean existe = false;
+		for (Propietarios usuarioAbuscar : usuarios) {
+			dniAbuscar = usuarioAbuscar.getDni();
+			if (dniAbuscar.equals(dniPropietario)) {
+				existe = true;
+			}else {
+				existe = false;
+			}
+		}
+		return existe;
+	}
+	public static void hacerReparacion(Scanner entrada, TallerMecanico TallerJose, ArrayList<Vehiculos> vehiculos, ArrayList<Propietarios> usuarios, ArrayList<Reparaciones> reparaciones ) {
+		Vehiculos vehiculoAreparar = null;
+		Propietarios propietarioReparacion = null;
+		String dniPropietario;
+		String idAcomparar;
+		String idAbuscar;
+		String dniaBuscar;
+		String dniAcomparar;
+		String comentario;
+		String decisionComent;
+		boolean estaElVehiculo = false;
+		System.out.println("Introduce el dni del usuario");
+		dniaBuscar = entrada.nextLine();
+		boolean existeElUsuario = estaUsuario(dniaBuscar, usuarios);
+		
+		if(existeElUsuario) {
+			for (Propietarios usuarioReparacion : usuarios) {
+				dniAcomparar = usuarioReparacion.getDni();
+				if(dniAcomparar.equals(dniaBuscar)) {
+					propietarioReparacion = usuarioReparacion;
+				}
+			}
+			System.out.println("Introduzca el id de registro del vehiculo: ");
+			idAbuscar = entrada.nextLine();
+			estaElVehiculo = TallerJose.estaElVehiculo(idAbuscar);
+			if (estaElVehiculo) {
+				for(Vehiculos vehiculo : vehiculos) {
+					idAcomparar = vehiculo.getIdRegistro();
+					if (idAcomparar.equals(idAbuscar)) {
+						vehiculoAreparar = vehiculo;
+					}
+				}
+				System.out.println("¿Quieres añadir un comentario? (si o no)");
+				decisionComent = entrada.nextLine();
+				if (decisionComent.toLowerCase().equals("si")) {
+					System.out.println("Agregue el comentario: ");
+					comentario = entrada.nextLine();
+				}else {
+					comentario = null;
+				}
+				Reparaciones nuevaReparacion = new Reparaciones(vehiculoAreparar, propietarioReparacion, LocalDate.now(),comentario);
+				reparaciones.add(nuevaReparacion);
+				System.out.println("Reparacion registrada con exito");
+			}else {
+				System.out.println("Primero debe registrar su vehiculo.");
+			}
+		}else {
+			System.out.println("Primero debe de darse de alta en nuestro sistema.");
+		}
+	}
+	public static void mostrarListaDeUsuarios(ArrayList<Propietarios> propietarios) {
+		for (Propietarios propietarioAimprimir : propietarios) {
+			System.out.println(propietarioAimprimir.toString());
+		}
+	}
+	public static void mostrarUsuPorId() {
+	public static void mostrarMenu() {
+		System.out.println("----Menu del taller----");
+		System.out.println("1. Dar de alta a un paciente. ");
+		System.out.println("2. Registrar un vehiculo.");
+		System.out.println("3. Registrar una reparación.");
+		System.out.println("4. Mostrar lista de usuarios.");
+		System.out.println("5. Mostrar Usuario por Id.");
+		System.out.println("6. Mostrar todos los vehiculos.");
+		System.out.println("7. Mostrar los vehiculos por id.");
+		System.out.println("8. Mostrar Listado de reparaciones.");
+		System.out.println("9. Mostrar reparaciones por usuario");
+	}
+	public static void ejecutarOpcion(int opcion, Scanner entrada, ArrayList<Propietarios> propietarios, ArrayList<Vehiculos> vehiculos, TallerMecanico tallerJose, ArrayList<Reparaciones> reparaciones) {
+		switch (opcion){
+		case 1:
+			Propietarios nuevoPropietario = crearUsuario(entrada);
+			propietarios.add(nuevoPropietario);
+			break;
+		case 2:
+			Vehiculos vehiculoNuevo = darDeAlta(entrada, vehiculos);
+			vehiculos.add(vehiculoNuevo);
+			break;
+		case 3:
+			hacerReparacion(entrada,  tallerJose, vehiculos, propietarios, reparaciones);
+			break;
+		case 4:
+			mostrarListaDeUsuarios(propietarios);
+			break;
+		case 5:
+			
+		}
+		
+	}
+}
+
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-40 startPosition= 9547
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-05-26 09:26:35.098
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-40 startPosition= 9547
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-05-26 09:26:35.102
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException: negative length=-40 startPosition= 9547
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3446)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:772)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3489)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1566)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:670)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:283)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:569)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1256)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:182)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:108)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:751)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:816)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1430)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:94)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:91)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:158)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-05-26 10:53:03.669
+!MESSAGE C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:388)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.possiblyFilteredLength(WorkingTreeIterator.java:408)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getEntryContentLength(WorkingTreeIterator.java:615)
+	at org.eclipse.jgit.api.AddCommand.call(AddCommand.java:265)
+	at org.eclipse.egit.ui.internal.staging.StagingView$58.run(StagingView.java:3862)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-05-26 10:53:56.532
+!MESSAGE C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:388)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.possiblyFilteredLength(WorkingTreeIterator.java:408)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getEntryContentLength(WorkingTreeIterator.java:615)
+	at org.eclipse.jgit.api.AddCommand.call(AddCommand.java:265)
+	at org.eclipse.egit.ui.internal.staging.StagingView$58.run(StagingView.java:3862)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-05-26 10:54:15.416
+!MESSAGE C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Dam\git\DamEclipse\ProgramacionJava\DamEclipse\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Cache\Cache_Data\data_0 (El proceso no tiene acceso al archivo porque está siendo utilizado por otro proceso)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:388)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.possiblyFilteredLength(WorkingTreeIterator.java:408)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getEntryContentLength(WorkingTreeIterator.java:615)
+	at org.eclipse.jgit.api.AddCommand.call(AddCommand.java:265)
+	at org.eclipse.egit.ui.internal.staging.StagingView$58.run(StagingView.java:3862)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
