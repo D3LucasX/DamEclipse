@@ -37,6 +37,11 @@ public class Propietarios {
 	public void setTipoSeguro(TipoSeguro tipoSeguro) {
 		TipoSeguro = tipoSeguro;
 	}
+	@Override
+	public String toString() {
+		return "Propietarios [dni=" + dni + ", nombre=" + nombre + ", cuentaBancaria=" + cuentaBancaria
+				+ ", TipoSeguro=" + TipoSeguro + "]";
+	}
 	
 	
 }

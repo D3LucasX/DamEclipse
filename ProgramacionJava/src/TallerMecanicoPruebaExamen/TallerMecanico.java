@@ -41,15 +41,4 @@ public class TallerMecanico {
 			System.out.println(reparacion.toString());
 		}
 	}
-	public void mostrarReparacionesPorId(ArrayList<Reparaciones> reparaciones, Propietarios propietario) {
-		if (reparaciones == null) {
-			System.out.println("No hay reparaciones registradas.");			
-		}else {
-			for (Reparaciones reparacionAbuscar : reparaciones) {
-				if (reparacionAbuscar.getPropietario().equals(propietario)) {
-					System.out.println(reparacionAbuscar.toString());
-				}
-			}
-		}
-	}
 }

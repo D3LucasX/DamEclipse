@@ -8,7 +8,8 @@ public class Vehiculos {
 	int precioSalida;
 	double velocidadMaxima;
 	
-	
+	public Vehiculos() {}
+
 	public Vehiculos(String idRegistro, String marca, String modelo, String color, int año, int precioSalida,
 			double velocidadMaxima) {
 		super();

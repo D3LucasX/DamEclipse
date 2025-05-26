@@ -11,10 +11,19 @@ public class TallerMecanicoMain {
 		ArrayList<Reparaciones> reparaciones = new ArrayList<>();
 		ArrayList<Propietarios> usuarios = new ArrayList<>();
 		TallerMecanico TallerJose = new TallerMecanico("TallerJose",vehiculos, reparaciones);
+		
+		int opcion = 0;
+		
+		do {
+			mostrarMenu();
+			opcion = entrada.nextInt();
+			entrada.nextLine();
+			ejecutarOpcion(opcion, entrada, usuarios, vehiculos, TallerJose, reparaciones);
+		}while(opcion != 10);
 	}
 	public static Vehiculos darDeAlta(Scanner entrada, ArrayList<Vehiculos> vehiculos) {
 		String DecisionCoche;
-		boolean esCoche;
+		boolean esCoche = false;
 		String ultimoRegistro;
 		String marca;
 		String modelo;
@@ -35,7 +44,7 @@ public class TallerMecanicoMain {
 		boolean deportiva = false;
 		String decisionDeportiva;
 		int cilindrada = 0;
-		Vehiculos nuevoVehiculo = null;
+		Vehiculos nuevoVehiculo = new Vehiculos();
 		System.out.println("¿Es un coche?");
 		DecisionCoche = entrada.nextLine();
 		esCoche = nuevoVehiculo.esCoche(DecisionCoche);
@@ -272,6 +281,14 @@ public class TallerMecanicoMain {
 			System.out.println(propietarioAimprimir.toString());
 		}
 	}
+	public static void mostrarUsuPorId(String dniAcomparar , ArrayList<Propietarios> usuarios) {
+		for (Propietarios propietarioAbuscar : usuarios) {
+			String dniPropietarioAbuscar = propietarioAbuscar.getDni();
+			if (dniPropietarioAbuscar.equals(dniAcomparar)) {
+				System.out.println(propietarioAbuscar.toString());
+			}
+		}
+	}
 	public static void mostrarMenu() {
 		System.out.println("----Menu del taller----");
 		System.out.println("1. Dar de alta a un paciente. ");
@@ -283,6 +300,8 @@ public class TallerMecanicoMain {
 		System.out.println("7. Mostrar los vehiculos por id.");
 		System.out.println("8. Mostrar Listado de reparaciones.");
 		System.out.println("9. Mostrar reparaciones por usuario");
+		System.out.println("10.Salir.");
+		System.out.println("Elige una opción:");
 	}
 	public static void ejecutarOpcion(int opcion, Scanner entrada, ArrayList<Propietarios> propietarios, ArrayList<Vehiculos> vehiculos, TallerMecanico tallerJose, ArrayList<Reparaciones> reparaciones) {
 		switch (opcion){
@@ -301,9 +320,54 @@ public class TallerMecanicoMain {
 			mostrarListaDeUsuarios(propietarios);
 			break;
 		case 5:
-			
+			System.out.println("Escribeme el Dni del usuario que quieras buscar: ");
+			String dniAcomparar = entrada.nextLine();
+			mostrarUsuPorId(dniAcomparar, propietarios);
+			break;
+		case 6:
+			tallerJose.mostrarVehiculos(vehiculos);
+			break;
+		case 7:
+			System.out.println("introduce el Id de registro del vehículo: ");
+			String idAbuscar = entrada.nextLine();
+			tallerJose.mostrarVehiculosPorId(idAbuscar, vehiculos);
+			break;
+		case 8:
+			tallerJose.mostrarReparaciones(reparaciones);
+			break;
+		case 9:
+			Propietarios PropietarioAbuscar1 = null;
+			System.out.println("escribe el Dni");
+			idAbuscar = entrada.nextLine();
+			for (Propietarios propietario : propietarios) {
+				dniAcomparar = propietario.getDni();
+				if (dniAcomparar.equals(idAbuscar)) {
+					PropietarioAbuscar1 = propietario;
+				}
+			}
+			mostrarReparacionesPorId(propietarios, reparaciones, PropietarioAbuscar1, entrada );
+			break;
+		case 10:
+			System.out.println("Saliendo...");
+			break;
+			default:
+				System.out.println("No ha elegido ninguna opcion válida.");
+				break;
 		}
 		
+	}
+	public static void mostrarReparacionesPorId(ArrayList<Propietarios> usuarios, ArrayList<Reparaciones> reparaciones, Propietarios propietario, Scanner entrada ) {
+		String idAbuscar;
+		String dniAcomparar;
+		if (reparaciones == null) {
+			System.out.println("No hay reparaciones registradas.");			
+		}else {
+			for (Reparaciones reparacionAbuscar : reparaciones) {
+				if (reparacionAbuscar.getPropietario().equals(propietario)) {
+					System.out.println(reparacionAbuscar.toString());
+				}
+			}
+		}
 	}
 }
 
